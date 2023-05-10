@@ -1,3 +1,5 @@
+rm -rf venv
+
 python3.10 -m venv venv
 
 source venv/bin/activate
@@ -10,4 +12,10 @@ python -m pip install --upgrade setuptools
 
 python -m pip install -r requirements.txt
 
-python main.py -t exp_data.toml
+if [ $# -eq 1 ]; then
+  toml_file="$1"
+fi
+
+echo "BARAN: START exp $toml_file."
+
+python main.py -t "$toml_file"
