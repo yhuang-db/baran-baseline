@@ -2,7 +2,7 @@ import argparse
 
 import toml
 import raha
-from raha import Correction
+from raha import Detection, Correction
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -23,16 +23,24 @@ if __name__ == "__main__":
         print(f"\n{dataset}")
         print(f"dirty path: {dirty_path}")
         print(f"clean path: {clean_path}")
-        exp_dataset.append(
-            {"name": dataset, "path": dirty_path, "clean_path": clean_path}
-        )
+        exp_dataset.append({"name": dataset, "path": dirty_path, "clean_path": clean_path})
 
     for dataset_dictionary in exp_dataset:
         data = raha.dataset.Dataset(dataset_dictionary)
-        data.detected_cells = dict(data.get_actual_errors_dictionary())
-        app = Correction()
-        app.VERBOSE = True
-        app.SAVE_RESULTS = False
-        correction_dictionary = app.run(data)
+
+        # error detection
+        app_detect = Detection()
+        app_detect.VERBOSE = True
+        app_detect.SAVE_RESULTS = False
+        detection_dictionary = app_detect.run(dataset_dictionary)
+        p, r, f = data.get_data_cleaning_evaluation(detection_dictionary)[:3]
+        print("Raha's performance on {}:\nPrecision = {:.2f}\nRecall = {:.2f}\nF1 = {:.2f}".format(data.name, p, r, f))
+
+        # error correction
+        data.detected_cells = detection_dictionary
+        app_correct = Correction()
+        app_correct.VERBOSE = True
+        app_correct.SAVE_RESULTS = False
+        correction_dictionary = app_correct.run(data)
         p, r, f = data.get_data_cleaning_evaluation(correction_dictionary)[-3:]
         print("Baran's performance on {}:\nPrecision = {:.2f}\nRecall = {:.2f}\nF1 = {:.2f}".format(data.name, p, r, f))
