@@ -1,2 +1,3 @@
 [code]
 dir = "/home/huan1531/sparcle-exp/data/austin-code"
+eval_attrs = ["zipcode", "city"]

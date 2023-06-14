@@ -1,2 +1,3 @@
 [building]
 dir = "/home/huan1531/sparcle-exp/data/chicago-building"
+eval_attrs = ["ca", "ct", "ward"]

@@ -1,2 +1,3 @@
 [fire]
 dir = "/home/huan1531/sparcle-exp/data/sf-fire"
+eval_attrs = ["zipcode", "sd", "nd"]
