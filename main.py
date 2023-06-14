@@ -1,4 +1,5 @@
 import argparse
+import time
 
 import toml
 import raha
@@ -7,6 +8,8 @@ from raha import Detection, Correction
 from eval import do_eval
 
 if __name__ == "__main__":
+    start = time.perf_counter()
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--Toml")
     args = parser.parse_args()
@@ -49,5 +52,8 @@ if __name__ == "__main__":
         data.create_repaired_dataset(correction_dictionary=correction_dictionary)
 
         # attribute evaluation
-        output_file = f'{dataset_dictionary["name"]}_eval.csv'
+        end = time.perf_counter()
+        runtime = time.strftime("%Hh%Mm%Ss", time.gmtime(end - start))
+
+        output_file = f'{dataset_dictionary["name"]}_eval_{runtime}.csv'
         do_eval(data, dataset_dictionary["eval_attrs"], output_file)
