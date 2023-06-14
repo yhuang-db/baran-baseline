@@ -4,6 +4,8 @@ import toml
 import raha
 from raha import Detection, Correction
 
+from eval import do_eval
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--Toml")
@@ -23,7 +25,7 @@ if __name__ == "__main__":
         print(f"\n{dataset}")
         print(f"dirty path: {dirty_path}")
         print(f"clean path: {clean_path}")
-        exp_dataset.append({"name": dataset, "path": dirty_path, "clean_path": clean_path})
+        exp_dataset.append({"name": dataset, "path": dirty_path, "clean_path": clean_path, "eval_attrs": dataset_dict["eval_attrs"]})
 
     for dataset_dictionary in exp_dataset:
         data = raha.dataset.Dataset(dataset_dictionary)
@@ -44,3 +46,8 @@ if __name__ == "__main__":
         correction_dictionary = app_correct.run(data)
         p, r, f = data.get_data_cleaning_evaluation(correction_dictionary)[-3:]
         print("Baran's performance on {}:\nPrecision = {:.2f}\nRecall = {:.2f}\nF1 = {:.2f}".format(data.name, p, r, f))
+        data.create_repaired_dataset(correction_dictionary=correction_dictionary)
+
+        # attribute evaluation
+        output_file = f'{dataset_dictionary["name"]}_eval.csv'
+        do_eval(data, dataset_dictionary["eval_attrs"], output_file)

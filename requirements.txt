@@ -3,3 +3,4 @@ scikit-learn
 toml
 pandas==1.5.3
 yapf
+duckdb
