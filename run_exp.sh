@@ -18,4 +18,7 @@ fi
 
 echo "BARAN: START exp $toml_file."
 
-python main.py -t "$toml_file"
+for iter in {1..3}
+do
+  python main.py -t "$toml_file" -c "$iter"
+done

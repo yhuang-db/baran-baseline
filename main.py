@@ -12,8 +12,10 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--Toml")
+    parser.add_argument("-c", "--Counter")
     args = parser.parse_args()
     toml_file = args.Toml
+    counter = args.Counter
     print(toml_file)
 
     toml_dict = toml.load(toml_file)
@@ -55,5 +57,5 @@ if __name__ == "__main__":
         end = time.perf_counter()
         runtime = time.strftime("%Hh%Mm%Ss", time.gmtime(end - start))
 
-        output_file = f'{dataset_dictionary["name"]}_eval_{runtime}.csv'
+        output_file = f'{dataset_dictionary["name"]}_eval_{counter}_{runtime}.csv'
         do_eval(data, dataset_dictionary["eval_attrs"], output_file)
