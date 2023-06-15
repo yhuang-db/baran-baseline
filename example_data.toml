@@ -1,2 +1,3 @@
 [crash_b]
 dir = "example_datadir"
+eval_attrs = ["boro"]

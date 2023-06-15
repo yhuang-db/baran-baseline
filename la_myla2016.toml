@@ -1,3 +1,3 @@
 [myla2016]
 dir = "/home/huan1531/sparcle-exp/data/la-myla2016"
-eval_attrs = ["zipcode", "apc", "cd", "nc", "nc_name", "division"]
+eval_attrs = ["zipcode", "nc", "nc_name", "division"]

@@ -1,3 +1,0 @@
-[coli]
-dir = "/home/huan1531/sparcle-exp/data/chicago-coli"
-eval_attrs = ["zipcode", "ward", "ca_num", "ca_name"]
