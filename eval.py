@@ -77,7 +77,7 @@ def do_eval(data, eval_attrs, output_file):
     t = df_eval_stat.set_index("attr").T
     t = t.rename_axis("metric", axis=1)
     t = t[["overall"] + eval_attrs]
-    pd.set_option("display.precision", 2)
+    pd.set_option("display.precision", 3)
     print(t)
 
-    t.to_csv(output_file)
+    t.to_csv(output_file, float_format="%.3f")
