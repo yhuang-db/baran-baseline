@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
         # error detection
         app_detect = Detection()
-        app_detect.VERBOSE = True
+        app_detect.VERBOSE = False
         app_detect.SAVE_RESULTS = False
         detection_dictionary = app_detect.run(dataset_dictionary)
         p, r, f = data.get_data_cleaning_evaluation(detection_dictionary)[:3]
