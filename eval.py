@@ -57,7 +57,10 @@ def do_eval(data, eval_attrs, output_file):
         }
         eval_stat.append(attr_stat)
 
-    precision = correct_repair_count / repair_count
+    if repair_count == 0:
+        precision = -1
+    else:
+        precision = correct_repair_count / repair_count
     recall = correct_repair_count / error_count
     overall_stat = {
         "attr": "overall",
