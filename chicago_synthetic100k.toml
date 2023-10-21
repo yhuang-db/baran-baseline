@@ -1,3 +1,3 @@
-[synthetic]
+[synthetic100k]
 dir = "/home/huan1531/sparcle-exp/data/chicago-synthetic100k"
 eval_attrs = ["pd", "ward", "zipcode", "beat", "ct"]
