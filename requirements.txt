@@ -1,4 +1,4 @@
-raha
+raha==1.25
 scikit-learn
 toml
 pandas==1.5.3
