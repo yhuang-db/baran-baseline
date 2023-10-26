@@ -1,0 +1,3 @@
+[code]
+dir = "/home/huan1531/sparcle-exp/data/boston-b3112021"
+eval_attrs = ["fired", "pwdd", "policed", "ward", "precinct", "zipcode"]
