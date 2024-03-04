@@ -1,3 +1,3 @@
 [lake]
 dir = "/home/huan1531/sparcle-exp/data/mf-lake"
-eval_attrs = ["A", "B", "C", "D", "E"]
+eval_attrs = ["a0", "a1", "a2", "a3", "a4"]
